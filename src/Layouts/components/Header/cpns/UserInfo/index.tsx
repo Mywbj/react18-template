@@ -13,6 +13,7 @@ const popoverList = [
   { label: '修改密码', value: 'changePassword' },
   { label: '布局设置', value: 'layouts' }
 ]
+
 const lastList = [{ label: '退出登陆', value: 'logOut' }]
 
 const UserInfo = memo(() => {

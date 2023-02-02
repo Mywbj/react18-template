@@ -44,7 +44,6 @@ function useSetupRoutes() {
     const newRoutes = mapMenusToRouter(menus, allRoutes)
     if (newRoutes.length) {
       recordRoutes.current = handleMergeRoutes(defaultRoutes, newRoutes)
-      console.log('recordRoutes: ', recordRoutes)
     }
   }
 

@@ -13,7 +13,6 @@ import { shallowEqual, useSelector } from 'react-redux'
 import { menuModeAPI } from '@/store/modules/layouts'
 
 const Header = memo(() => {
-  console.log('myheader')
   const { menuMode } = useSelector(
     (state: RootState) => ({
       menuMode: state.layouts.appConfig.menuMode

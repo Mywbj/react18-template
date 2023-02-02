@@ -26,7 +26,7 @@ interface IInitialState {
   /**
    * 组件大小
    */
-  componentSize: string
+  componentSize: 'small' | 'middle' | 'large' | undefined
   /**
    * 布局的配置
    */
