@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -14,11 +14,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
-  "exclude": ["node_modules"],
-  "paths": {
-    "@/*": ["src/*"]
+    "jsx": "react-jsx",
+    // "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
+  // "types":["webpack-env"],
+  // "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "src/router/s.js"],
+  // "include": ["src"],
+  // "exclude": ["node_modules"]
 }

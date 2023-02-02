@@ -1,0 +1,8 @@
+@import './reset.css';
+@import './variables.css';
+
+.shh_flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

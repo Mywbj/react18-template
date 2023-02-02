@@ -1,6 +1,7 @@
 module.exports = {
   root: true,
   env: {
+    browser: true,
     node: true
   },
   parser: '@typescript-eslint/parser',
@@ -17,6 +18,15 @@ module.exports = {
   rules: {
     // 'prettier/prettier': 'off'
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+    'prettier/prettier': [
+      'error',
+      {
+        printWidth: 120
+      }
+    ]
   }
 }
