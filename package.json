@@ -36,7 +36,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "fix": "eslint src/* --fix",
+    "fix": "eslint src/. --fix",
     "prettier": "prettier --write .",
     "prepare": "husky install"
   },
