@@ -79,7 +79,7 @@ const initialState: IInitialState = {
 }
 
 const layoutSlice = createSlice({
-  name: 'layout',
+  name: 'layouts',
   initialState,
   reducers: {
     changeAppConfigAction(state: any, { payload }: { payload: object }): any {

@@ -12,7 +12,13 @@ export const InfoWrapper = styled.div`
     display: flex;
     align-items: center;
     .username {
-      margin-left: 2px;
+      margin-top: 3px;
+      margin-left: 5px;
+      font-weight: 500;
+    }
+    .userdown {
+      margin-top: 3px;
+      margin-left: 3px;
     }
   }
   .popover_item {

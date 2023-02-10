@@ -33,9 +33,10 @@ const allRoutes = getAllRouter()
 
 // 设置路由
 function useSetupRoutes() {
-  const { menus } = useSelector((state: RootState) => {
+  const { menus, token } = useSelector((state: RootState) => {
     return {
-      menus: state.login.menus
+      menus: state.login.menus,
+      token: state.login.token
     }
   }, shallowEqual)
   const recordRoutes = useRef(defaultRoutes)
@@ -47,21 +48,24 @@ function useSetupRoutes() {
     }
   }
 
-  return useRoutes(recordRoutes.current as any)
+  return {
+    token,
+    routes: useRoutes(recordRoutes.current as any)
+  }
 }
 
 function RouterComponent() {
   console.log('RouterComponent')
-  const routes = useSetupRoutes()
+  const { routes, token } = useSetupRoutes()
 
   const navigate = useNavigate()
   const location = useLocation()
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    console.log('token: ', token)
     if (!token) {
       navigate('/login')
     }
-  }, [location.pathname])
+  }, [location.pathname, token])
 
   return routes
 }

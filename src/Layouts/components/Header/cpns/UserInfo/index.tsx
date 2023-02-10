@@ -1,8 +1,8 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { Avatar, Popover, Modal } from 'antd'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { ExclamationCircleFilled } from '@ant-design/icons'
+import { ExclamationCircleFilled, CaretDownOutlined } from '@ant-design/icons'
 import { InfoWrapper } from './css'
 import { changeDrawerOpenAction } from '@/store/modules/layouts'
 import PopoverContent from '@/components/PopoverContent'
@@ -32,20 +32,37 @@ const UserInfo = memo(() => {
         })
       },
       onCancel() {
-        console.log('Cancel')
+        // console.log('Cancel')
       }
     })
   }
 
   const dropdownItemHandle = (info: any) => {
     console.log('info: ', info)
-    setOpen(false)
+    // setOpen(false)
     if (info.value === 'layouts') {
       dispatch(changeDrawerOpenAction(true))
     }
     if (info.value === 'logOut') {
       showConfirm()
     }
+  }
+
+  useEffect(() => {
+    if (open) {
+      const handle = () => {
+        console.log(123)
+        setOpen(false)
+        document.removeEventListener('click', handle)
+      }
+      setTimeout(() => {
+        document.addEventListener('click', handle)
+      })
+    }
+  }, [open])
+
+  const onOpenChange = () => {
+    setOpen(!open)
   }
 
   return (
@@ -56,15 +73,16 @@ const UserInfo = memo(() => {
         open={open}
         content={<PopoverContent list={popoverList} lastList={lastList} onItemClick={dropdownItemHandle} />}
       >
-        <div className="user_info" onClick={() => setOpen(!open)}>
+        <div className="user_info" onClick={onOpenChange}>
           <div className="avatar">
             <Avatar
               size="large"
               src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80"
             />
           </div>
-          <div className="username">
-            <span>Myway</span>
+          <div className="username">Hi, Myway</div>
+          <div className="userdown">
+            <CaretDownOutlined />
           </div>
         </div>
       </Popover>
