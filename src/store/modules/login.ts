@@ -1,19 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
 import type { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore'
-import { DEFAULT_PATH } from '@/config/constant'
+import { DEFAULT_ROUTE } from '@/config/constant'
 import cache from '@/utils/cache'
-
-// 这里统一加载缓存的一些数据
-export const loadLocalLogin = createAsyncThunk('login/loadLocalLogin', (_, { dispatch }) => {
-  const menus = cache.getLocalSorage('menus')
-  if (menus) {
-    dispatch(changeMenusAction(menus))
-  }
-  const token = cache.getLocalSorage('token')
-  if (token) {
-    dispatch(changeTokenAction(token))
-  }
-})
 
 /**
  * 初始化存储里面的数据
@@ -35,21 +23,29 @@ export function initSorageData(store: ToolkitStore) {
 export const accountLoginThunk = createAsyncThunk('login/accountLoginThunk', (data: any, { dispatch }) => {
   dispatch(changeMenusAction(data.menus))
   dispatch(changeTokenAction(data.token))
-  data.navigate(DEFAULT_PATH.path)
+  // 处理完毕跳转首页
+  data.navigate(DEFAULT_ROUTE.path)
 })
+
+interface IInitialState {
+  token: string | null
+  menus: any[]
+}
+
+const initialState: IInitialState = {
+  token: null,
+  menus: []
+}
 
 const loginSlice = createSlice({
   name: 'login',
-  initialState: {
-    token: null,
-    menus: []
-  },
+  initialState,
   reducers: {
-    changeMenusAction(state, { payload }) {
+    changeMenusAction(state, { payload }: PayloadAction<any[]>) {
       state.menus = payload
       cache.setLocalSorage('menus', payload)
     },
-    changeTokenAction(state, { payload }) {
+    changeTokenAction(state, { payload }: PayloadAction<string>) {
       state.token = payload
       cache.setLocalSorage('token', payload)
     }

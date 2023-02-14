@@ -6,7 +6,7 @@ import classnames from 'classnames'
 import { BreadWrapper } from './css'
 import { RootState } from '@/store'
 import { IMenuItem } from '@/service/login/types'
-import { DEFAULT_PATH } from '@/config/constant'
+import { DEFAULT_ROUTE } from '@/config/constant'
 
 const MyBreadcrumb: React.FC = memo(() => {
   const { menus, crumbsStatus } = useSelector(
@@ -35,20 +35,20 @@ const MyBreadcrumb: React.FC = memo(() => {
   }
   const breadList = getCurrentBread(menus)
   // console.log('breadList: ', breadList);
-  const isActive = breadList.length === 1 && breadList[0].path === DEFAULT_PATH.path
+  const isActive = breadList.length === 1 && breadList[0].path === DEFAULT_ROUTE.path
   return (
     <BreadWrapper>
       {crumbsStatus && (
         <Breadcrumb>
           <Breadcrumb.Item
-            onClick={() => navigate(DEFAULT_PATH.path)}
+            onClick={() => navigate(DEFAULT_ROUTE.path)}
             className={classnames(['default', { bre_active: isActive }])}
           >
-            {DEFAULT_PATH.label}
+            {DEFAULT_ROUTE.label}
           </Breadcrumb.Item>
           {breadList.map((item, index) => (
             <Breadcrumb.Item key={index} className={classnames({ bre_active: index === breadList.length - 1 })}>
-              {item.label !== DEFAULT_PATH.label ? item.label : null}
+              {item.label !== DEFAULT_ROUTE.label ? item.label : null}
             </Breadcrumb.Item>
           ))}
         </Breadcrumb>

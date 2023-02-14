@@ -1,5 +1,6 @@
 import axios from 'axios'
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios'
+import NProgress from '@/config/nprogress'
 
 interface BJRequestHook {
   requestHook?: (config: AxiosRequestConfig) => AxiosRequestConfig
@@ -29,6 +30,7 @@ class BJRequest {
     // 全局拦截器
     this.instance.interceptors.request.use(
       (config) => {
+        NProgress.start()
         // console.log('全局请求拦截器')
         return config
       },
@@ -40,10 +42,12 @@ class BJRequest {
     // 全局响应
     this.instance.interceptors.response.use(
       (res) => {
+        NProgress.done()
         // console.log('全局响应拦截器')
         return res.data
       },
       (err) => {
+        NProgress.done()
         // console.error('全局响应失败')
         return err
       }

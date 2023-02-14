@@ -38,9 +38,9 @@ const Layouts = memo(() => {
           </div>
           <div className="main">
             <Content>
-              <Card className="content_card">
-                <Outlet />
-              </Card>
+              {/* <Card className="content_card"> */}
+              <Outlet />
+              {/* </Card> */}
             </Content>
           </div>
           <div className="footer">
